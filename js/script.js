@@ -1,13 +1,15 @@
+const DateTime = luxon.DateTime;
 const { createApp } = Vue
 
 createApp({
     data() {
         return {
+            newMsg: '',
             activeContact: 0,
             contacts: [
                 {
                     name: 'Michele',
-                    avatar: '/img/avatar_1.jpg',
+                    avatar: './img/avatar_1.jpg',
                     visible: true,
                     messages: [
                         {
@@ -29,7 +31,7 @@ createApp({
                 },
                 {
                     name: 'Gioia',
-                    avatar: '/img/avatar_2.jpg',
+                    avatar: './img/avatar_2.jpg',
                     visible: true,
                     messages: [
                         {
@@ -51,7 +53,7 @@ createApp({
                 },
                 {
                     name: 'Samuele',
-                    avatar: '/img/avatar_3.jpg',
+                    avatar: './img/avatar_3.jpg',
                     visible: true,
                     messages: [
                         {
@@ -73,7 +75,7 @@ createApp({
                 },
                 {
                     name: 'Alessandro B.',
-                    avatar: '/img/avatar_4.jpg',
+                    avatar: './img/avatar_4.jpg',
                     visible: true,
                     messages: [
                         {
@@ -90,7 +92,7 @@ createApp({
                 },
                 {
                     name: 'Alessandro L.',
-                    avatar: '/img/avatar_5.jpg',
+                    avatar: './img/avatar_5.jpg',
                     visible: true,
                     messages: [
                         {
@@ -107,7 +109,7 @@ createApp({
                 },
                 {
                     name: 'Claudia',
-                    avatar: '/img/avatar_6.jpg',
+                    avatar: './img/avatar_6.jpg',
                     visible: true,
                     messages: [
                         {
@@ -129,7 +131,7 @@ createApp({
                 },
                 {
                     name: 'Federico',
-                    avatar: '/img/avatar_7.jpg',
+                    avatar: './img/avatar_7.jpg',
                     visible: true,
                     messages: [
                         {
@@ -146,7 +148,7 @@ createApp({
                 },
                 {
                     name: 'Davide',
-                    avatar: '/img/avatar_8.jpg',
+                    avatar: './img/avatar_8.jpg',
                     visible: true,
                     messages: [
                         {
@@ -172,7 +174,27 @@ createApp({
     methods: {
         changeContact(index){
             this.activeContact = index;
-            console.log(this.contacts[this.activeContact].messages[0].message);
+        },
+        sendMsg(){
+            let obj = {
+                date: DateTime.local().toFormat('T'),
+                message: this.newMsg,
+                status: 'sent'
+            };
+
+            if (obj.message.length > 0) {
+                this.contacts[this.activeContact].messages.push(obj);
+                this.message = '';
+                setTimeout(() => {
+                    let obj = {
+                        date: DateTime.local().toFormat('T'),
+                        message: 'ok',
+                        status: 'received'
+                    };
+        
+                    this.contacts[this.activeContact].messages.push(obj);  
+                }, 1000);   
+            }            
         }    
     },
 }).mount('#app')

@@ -88,10 +88,12 @@ img{
 }
 
 .msg{
+    min-width: 50px;
     max-width: 300px; 
     padding: 5px;
     padding-bottom: 10px;
-    margin-top: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     border-radius: 7px; 
 }
 
