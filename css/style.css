@@ -23,6 +23,10 @@ img{
     background-color: white;
 }
 
+.my-d-flex{
+    display: flex;
+}
+
 .pointer{
     cursor: pointer;
 }

@@ -54,14 +54,14 @@
                             <span class="input-group-text border-0" id="search-bar">
                                 <i class="fa-solid fa-magnifying-glass" style="color: rgba(128, 128, 128, 0.6)"></i>
                             </span>
-                            <input type="text" class="form-control border-0 shadow-none" aria-describedby="search-bar" placeholder="Cerca o inizia una nuova chat">
+                            <input type="text" class="form-control border-0 shadow-none" aria-describedby="search-bar" placeholder="Cerca o inizia una nuova chat" v-model="search" @keyup="searchContact()">
                         </div>
                     </div>
 
                     <!-- Chat boxs -->
                     <div class="col-12 p-0">
                         <div class="chat-box">
-                            <div class="align-middle d-flex py-10 px-3 position-relative pointer" :class="activeContact === index ? 'bg-lightgray' : ''" v-for="(chat, index) in contacts" :key="index" @click="changeContact(index)">
+                            <div v-show="chat.visible" class="align-middle my-d-flex py-10 px-3 position-relative pointer" :class="activeContact === index ? 'bg-lightgray' : ''" v-for="(chat, index) in contacts" :key="index" @click="changeContact(index)">
                                 <img :src="chat.avatar" alt="">
                                 <div class="mx-4">
                                     <div class="fw-bolder">{{chat.name}}</div>
@@ -121,7 +121,6 @@
                             <span><i class="fa-solid fa-microphone px-3" style="color: gray"></i></span>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>

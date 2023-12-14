@@ -5,6 +5,7 @@ createApp({
     data() {
         return {
             newMsg: '',
+            search: '',
             activeContact: 0,
             contacts: [
                 {
@@ -195,6 +196,16 @@ createApp({
                     this.contacts[this.activeContact].messages.push(obj);  
                 }, 1000);   
             }            
-        }    
+        },
+        searchContact(){
+            this.contacts.forEach((element) => {
+                if(element.name.toLowerCase().includes(this.search.toLowerCase())){
+                    element.visible = true;
+                }
+                else{
+                    element.visible = false;
+                }
+            });
+        }
     },
 }).mount('#app')
