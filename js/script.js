@@ -185,7 +185,7 @@ createApp({
 
             if (obj.message.length > 0) {
                 this.contacts[this.activeContact].messages.push(obj);
-                this.message = '';
+                this.newMsg = '';
                 setTimeout(() => {
                     let obj = {
                         date: DateTime.local().toFormat('T'),
@@ -195,7 +195,8 @@ createApp({
         
                     this.contacts[this.activeContact].messages.push(obj);  
                 }, 1000);   
-            }            
+            }
+                       
         },
         searchContact(){
             this.contacts.forEach((element) => {
