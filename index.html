@@ -61,7 +61,7 @@
                     <!-- Chat boxs -->
                     <div class="col-12 p-0">
                         <div class="chat-box">
-                            <div class="align-middle d-flex py-10 px-3 position-relative" v-for="(chat, index) in contacts" :key="index">
+                            <div class="align-middle d-flex py-10 px-3 position-relative pointer" :class="activeContact === index ? 'bg-lightgray' : ''" v-for="(chat, index) in contacts" :key="index" @click="changeContact(index)">
                                 <img :src="chat.avatar" alt="">
                                 <div class="mx-4">
                                     <div class="fw-bolder">{{chat.name}}</div>
@@ -81,9 +81,9 @@
                 <div class="row m-0">
                     <div class="col-12  d-flex justify-content-between bg-lightgray">
                         <div class="align-middle d-flex py-10 px-3">
-                            <img src="./img/avatar_1.jpg" alt="">
+                            <img :src="contacts[activeContact].avatar" alt="">
                             <div class="mx-4">
-                                <div class="fw-bolder">Michele</div>
+                                <div class="fw-bolder">{{contacts[activeContact].name}}</div>
                                 <div class="text-secondary">Ultimo accesso oggi alle 12:00</div>
                             </div>
                         </div>
@@ -102,29 +102,14 @@
                         <div class="box-message">
                             <div class="row flex-column m-0">
 
-                                <div class="col">
-                                    <div class="msg msg-user position-relative float-end">
-                                        Hai portato a spasso il cane?
-                                        <span class="position-absolute bottom-0 end-0 px-2 text-secondary fs-xsmall">12:00</span>
+                                <!-- messages -->
+                                <div class="col" v-for="(item, index) in contacts[activeContact].messages" :key="index">
+                                    <div class="msg position-relative" :class="item.status == 'sent' ? 'msg-user float-end' : 'msg-pc float-start'">
+                                        {{item.message}}
+                                        <span class="position-absolute bottom-0 end-0 px-2 text-secondary fs-xsmall">{{item.date}}</span>
                                     </div>
-                                </div>
-
-                                <div class="col">
-                                    <div class="msg msg-user position-relative float-end">
-                                        Ricordati di stendere i panni
-                                        <span class="position-absolute bottom-0 end-0 px-2 text-secondary fs-xsmall">12:00</span>
-                                    </div>
-                                </div>
-
-                                <div class="col">
-                                    <div class="msg msg-pc position-relative float-start">
-                                        Tutto fatto!
-                                        <span class="position-absolute bottom-0 end-0 px-2 text-secondary fs-xsmall">12:00</span>
-                                    </div>
-                                    
                                 </div>
                             </div>
-
                         </div>
                     </div>
 

@@ -23,6 +23,10 @@ img{
     background-color: white;
 }
 
+.pointer{
+    cursor: pointer;
+}
+
 .fs-smaller{
     font-size: smaller;
 }
