@@ -144,6 +144,11 @@ createApp({
                             date: '15:50',
                             message: 'Grazie per avermelo ricordato, le scrivo subito!',
                             status: 'received'
+                        },
+                        {
+                            date: '16:30',
+                            message: 'Di nulla :)',
+                            status: 'sent'
                         }
                     ],
                 },
@@ -207,6 +212,35 @@ createApp({
                     element.visible = false;
                 }
             });
+        },
+        deleteMsg(index){
+            let conf = confirm("Are you sure you want to delete this message?");
+            if (conf) {
+                this.contacts[this.activeContact].messages.splice(index, 1);
+            }
+        },
+        lastMsg(index){
+            let arr = this.contacts[index].messages;
+            let lastItem = arr[arr.length - 1]
+
+            return lastItem.message
+        },
+        lastDate(index){
+            let arr = this.contacts[index].messages;
+            let lastItem = arr[arr.length - 1]
+
+            return lastItem.date
+        },
+        lastActiveDate(){
+            let arr = this.contacts[this.activeContact].messages;
+            let lastItem = arr[arr.length - 1];
+
+            if (lastItem.status == 'received') {
+                return `Ultimo acceso effetuato alle ${lastItem.date}`
+            }
+            else{
+                return "offline" 
+            }
         }
     },
 }).mount('#app')

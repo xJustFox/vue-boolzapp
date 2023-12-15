@@ -24,7 +24,7 @@
                     <div class="col-12 d-flex justify-content-between bg-lightgray">
                         <div class="align-middle py-10">
                             <img src="./img/avatar_io.jpg" alt="">
-                            <span class="fw-bolder mx-2">Franco</span>
+                            <span class="fw-bolder mx-2 pe-none">Franco</span>
                         </div>
                         <div class="d-flex align-items-center py-10">
                             <ul class="ul-menu list-unstyled d-flex m-0">
@@ -42,7 +42,7 @@
                                 <i class="fa-solid fa-bell-slash fa-lg bell" style="color: #8edafc;"></i>
                             </div>
                             <div class="lh-sm px-2 align-middle">
-                                <div class="fw-bold">Ricevi notifiche di nuovi messaggi</div>
+                                <div class="fw-bold pe-none">Ricevi notifiche di nuovi messaggi</div>
                                 <a href="">Attiva notifiche desktop</a>
                             </div>
                         </div>
@@ -51,7 +51,7 @@
                     <!-- Search bar -->
                     <div class="col-12 p-0">
                         <div class="input-group input-group-sm py-10 px-4">
-                            <span class="input-group-text border-0" id="search-bar">
+                            <span class="input-group-text border-0 pointer" id="search-bar">
                                 <i class="fa-solid fa-magnifying-glass" style="color: rgba(128, 128, 128, 0.6)"></i>
                             </span>
                             <input type="text" class="form-control border-0 shadow-none" aria-describedby="search-bar" placeholder="Cerca o inizia una nuova chat" v-model="search" @keyup="searchContact">
@@ -65,9 +65,9 @@
                                 <img :src="chat.avatar" alt="">
                                 <div class="mx-4">
                                     <div class="fw-bolder">{{chat.name}}</div>
-                                    <div class="text-secondary">Ultimo messaggio inviato</div>
+                                    <div class="text-secondary">{{lastMsg(index)}}</div>
                                 </div>
-                                <span class="position-absolute top-0 end-0 py-10 px-2 text-secondary fs-smaller">12:00</span>
+                                <span class="position-absolute top-0 end-0 py-10 px-2 text-secondary fs-smaller">{{lastDate(index)}}</span>
                             </div>
                         </div>
                     </div>
@@ -80,11 +80,11 @@
                 <!-- Header Right container -->
                 <div class="row m-0">
                     <div class="col-12  d-flex justify-content-between bg-lightgray">
-                        <div class="align-middle d-flex py-10 px-3">
+                        <div class="align-middle d-flex py-10 px-3 pe-none">
                             <img :src="contacts[activeContact].avatar" alt="">
                             <div class="mx-4">
                                 <div class="fw-bolder">{{contacts[activeContact].name}}</div>
-                                <div class="text-secondary">Ultimo accesso oggi alle 12:00</div>
+                                <div class="text-secondary">{{lastActiveDate()}}</div>
                             </div>
                         </div>
                     
@@ -105,8 +105,17 @@
                                 <!-- messages -->
                                 <div class="col" v-for="(item, index) in contacts[activeContact].messages" :key="index">
                                     <div class="msg position-relative" :class="item.status == 'sent' ? 'msg-user float-end' : 'msg-pc float-start'">
-                                        {{item.message}}
-                                        <span class="position-absolute bottom-0 end-0 px-2 text-secondary fs-xsmall">{{item.date}}</span>
+                                        <span class="pe-none">{{item.message}}</span>
+
+                                        <!-- drop down -->
+                                        <div class="dropdown position-absolute top-0 end-0 px-1 text-secondary pointer">
+                                            <span data-bs-toggle="dropdown"><i class="fas fa-angle-down fa-xs"></i></span>
+                                            <ul class="dropdown-menu">
+                                              <li><a class="dropdown-item" href="#">Message Info</a></li>
+                                              <li><a class="dropdown-item" href="#" @click="deleteMsg(index)">Delete Message</a></li>
+                                            </ul>
+                                        </div>
+                                        <span class="position-absolute bottom-0 end-0 px-2 text-secondary fs-xsmall pe-none">{{item.date}}</span>
                                     </div>
                                 </div>
                             </div>
@@ -116,9 +125,9 @@
                     <!-- Text bar -->
                     <div class="col-12 bg-lightgray">
                         <div class="d-flex align-items-center py-10">
-                            <span><i class="fa-regular fa-face-smile px-3" style="color: gray"></i></span>
+                            <span><i class="fa-regular fa-face-smile px-3 pointer" style="color: gray"></i></span>
                             <input type="search" class="form-control border-0 shadow-none mx-3" placeholder="Scrivi un messaggio..." @keyup.enter="sendMsg" v-model="newMsg"/>
-                            <span><i class="fa-solid fa-microphone px-3" style="color: gray"></i></span>
+                            <span><i class="fa-solid fa-microphone px-3 pointer" style="color: gray"></i></span>
                         </div>
                     </div>
                 </div>
@@ -129,5 +138,6 @@
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/luxon@3.4/build/global/luxon.min.js"></script>
     <script type="text/javascript" src="./js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 </html>

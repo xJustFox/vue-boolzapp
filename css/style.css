@@ -61,6 +61,7 @@ img{
 
 .ul-menu > *{
     padding-left: 20px;
+    cursor: pointer;
 }
 
 .bell{
@@ -96,6 +97,7 @@ img{
     max-width: 300px; 
     padding: 5px;
     padding-bottom: 10px;
+    padding-right: 15px;
     margin-top: 10px;
     margin-bottom: 10px;
     border-radius: 7px; 
