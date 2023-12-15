@@ -83,7 +83,7 @@ img{
 }
 
 .box-message{
-    background-image: url(/img/mine.jpg);
+    background-image: url('../img/mine.jpg');
     height: calc(100vh - 166px); 
     overflow-y: scroll;
 }
