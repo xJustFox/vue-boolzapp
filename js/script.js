@@ -210,7 +210,7 @@ createApp({
             this.activeContact = index;
         },
         sendMsg(){
-            let obj = {
+            const obj = {
                 date: DateTime.local().toFormat('T'),
                 message: this.newMsg,
                 status: 'sent',
@@ -225,15 +225,18 @@ createApp({
                     setTimeout(() => {
                         this.texting= true;  
                         setTimeout(() => {
-                            let obj = {
+                            const arrMsg = ['Ciao','Ok','Scusa, non posso rispondere.', 'Devo aver perso il tuo numero, chi sei?', 'Ciao Franco, come stai?', 'Credo tu abbia sbagliato numero'];
+                            const randomNum = Math.floor(Math.random() * arrMsg.length + 0);
+
+                            const obj = {
                                 date: DateTime.local().toFormat('T'),
-                                message: 'ok',
+                                message: arrMsg[randomNum],
                                 status: 'received',
                                 visibleMsg: true,
                             };
                 
                             this.contacts[this.activeContact].messages.push(obj);  
-                        }, Math.floor(Math.random() * 10000 + 1000)); 
+                        }, Math.floor(Math.random() * 1000)); 
                     }, Math.floor(Math.random() * 5000 + 2000));
                 }, Math.floor(Math.random() * 2000 + 1000));
             }
@@ -261,8 +264,8 @@ createApp({
             }
         },
         lastMsg(index){
-            let arr = this.contacts[index].messages;
-            let lastItem = arr[arr.length - 1]
+            const arr = this.contacts[index].messages;
+            const lastItem = arr[arr.length - 1]
             if (arr.length > 0) {
                 return lastItem.message
             }
@@ -272,8 +275,8 @@ createApp({
             }
         },
         lastDate(index){
-            let arr = this.contacts[index].messages;
-            let lastItem = arr[arr.length - 1]
+            const arr = this.contacts[index].messages;
+            const lastItem = arr[arr.length - 1]
 
             if (arr.length > 0) {
                 return lastItem.date
@@ -284,8 +287,8 @@ createApp({
             }
         },
         lastActiveDate(){
-            let arr = this.contacts[this.activeContact].messages;
-            let lastItem = arr[arr.length - 1];
+            const arr = this.contacts[this.activeContact].messages;
+            const lastItem = arr[arr.length - 1];
             let checkArr = [];
 
             arr.forEach(element => {
@@ -309,13 +312,12 @@ createApp({
                 }
             }
 
-            
             if (!checkArr.includes('received') || checkArr.length < 0) {
                 return `offline`;
             }
         },
         addContact() {
-            let obj = {
+            const obj = {
                 name: this.contactName,
                 avatar: './img/avatar_user.jpg',
                 visible: true,
@@ -327,7 +329,7 @@ createApp({
             this.tel = '';
         },
         searchMessage(){
-            let arr = this.contacts[this.activeContact].messages;
+            const arr = this.contacts[this.activeContact].messages;
 
             arr.forEach((element) => {
                 if(element.message.toLowerCase().includes(this.searchMsg.toLowerCase())){
@@ -337,6 +339,6 @@ createApp({
                     element.visibleMsg = false;
                 }
             });
-        }
+        },
     },
 }).mount('#app')
