@@ -7,6 +7,7 @@ createApp({
             newMsg: '',
             search: '',
             texting: false,
+            online: false,
             activeContact: 0,
             contacts: [
                 {
@@ -193,17 +194,20 @@ createApp({
                 this.contacts[this.activeContact].messages.push(obj);
                 this.newMsg= '';
                 setTimeout(() => {
-                    this.texting= true;  
+                    this.online= true;
                     setTimeout(() => {
-                        let obj = {
-                            date: DateTime.local().toFormat('T'),
-                            message: 'ok',
-                            status: 'received'
-                        };
-            
-                        this.contacts[this.activeContact].messages.push(obj);  
-                    }, Math.floor(Math.random() * 10000 + 1000)); 
-                }, Math.floor(Math.random() * 5000 + 2000))
+                        this.texting= true;  
+                        setTimeout(() => {
+                            let obj = {
+                                date: DateTime.local().toFormat('T'),
+                                message: 'ok',
+                                status: 'received'
+                            };
+                
+                            this.contacts[this.activeContact].messages.push(obj);  
+                        }, Math.floor(Math.random() * 10000 + 1000)); 
+                    }, Math.floor(Math.random() * 5000 + 2000));
+                }, Math.floor(Math.random() * 2000 + 1000));
             }
                        
         },
@@ -234,6 +238,10 @@ createApp({
             if (arr.length > 0) {
                 return lastItem.message
             }
+            else{
+
+                return `...`;
+            }
         },
         lastDate(index){
             let arr = this.contacts[index].messages;
@@ -241,6 +249,10 @@ createApp({
 
             if (arr.length > 0) {
                 return lastItem.date
+            }
+            else{
+
+                return `...`;
             }
         },
         lastActiveDate(){
@@ -250,22 +262,28 @@ createApp({
 
             arr.forEach(element => {
                 checkArr.push(element.status)
-                console.log(checkArr);
             });
-            
+
             if (arr.length > 0) {
-                if (lastItem.status == 'received') {
-                    return `Ultimo acceso effetuato alle ${lastItem.date}`
+                if (lastItem.status == 'received') { 
+                    return `Ultimo acceso effetuato alle ${lastItem.date}`;
                 }
                 else if (this.texting == true) {
-                    return 'Sta scrivendo...'
+                    return 'Sta scrivendo...';
                 }
                 else{
+                    if (this.online) {
+                        return `online`;
+                    }
+                    else{
+                        return `offline`;
+                    }
                 }
             }
+
             
             if (!checkArr.includes('received') || checkArr.length < 0) {
-                return '...'
+                return `offline`;
             }
         },
     },
