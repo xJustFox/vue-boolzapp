@@ -203,7 +203,7 @@ createApp({
             
                         this.contacts[this.activeContact].messages.push(obj);  
                     }, Math.floor(Math.random() * 10000 + 1000)); 
-                },Math.floor(Math.random() * 5000 + 2000))
+                }, Math.floor(Math.random() * 5000 + 2000))
             }
                        
         },
@@ -217,40 +217,56 @@ createApp({
                 }
             });
         },
-        deleteMsg(index){
+        deleteMsg(index) {
+            let arr = this.contacts[index].messages;
             let conf = confirm("Are you sure you want to delete this message?");
             if (conf) {
-                this.contacts[this.activeContact].messages.splice(index, 1);
+                if (arr === 1) {
+                    this.contacts[this.activeContact].messages.splice(0, 1);
+                } else {
+                    this.contacts[this.activeContact].messages.splice(index, 1);
+                }
             }
         },
         lastMsg(index){
             let arr = this.contacts[index].messages;
             let lastItem = arr[arr.length - 1]
-
-            return lastItem.message
+            if (arr.length > 0) {
+                return lastItem.message
+            }
         },
         lastDate(index){
             let arr = this.contacts[index].messages;
             let lastItem = arr[arr.length - 1]
 
-            return lastItem.date
+            if (arr.length > 0) {
+                return lastItem.date
+            }
         },
         lastActiveDate(){
             let arr = this.contacts[this.activeContact].messages;
             let lastItem = arr[arr.length - 1];
+            let checkArr = [];
 
+            arr.forEach(element => {
+                checkArr.push(element.status)
+                console.log(checkArr);
+            });
             
-            if (lastItem.status == 'received') {
-                return `Ultimo acceso effetuato alle ${lastItem.date}`
+            if (arr.length > 0) {
+                if (lastItem.status == 'received') {
+                    return `Ultimo acceso effetuato alle ${lastItem.date}`
+                }
+                else if (this.texting == true) {
+                    return 'Sta scrivendo...'
+                }
+                else{
+                }
             }
-            else if (this.texting = true) {
-                return 'Sta scrivendo...'
-            }
-            else{
-                return 'offline'
-            }
-
             
+            if (!checkArr.includes('received') || checkArr.length < 0) {
+                return '...'
+            }
         },
     },
 }).mount('#app')
