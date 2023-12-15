@@ -117,8 +117,13 @@
                         </div>
                     
                         <div class="d-flex align-items-center py-10">
-                            <ul class="ul-menu list-unstyled d-flex m-0">
-                                <li><i class="fa-solid fa-lg fa-magnifying-glass" style="color: rgba(128, 128, 128, 0.6);"></i></li>
+
+                            <!-- SearchMsg bar -->
+                            <span v-show="!searchMsgCheck" class="p-0 my-w-140">
+                                <input type="text" class="form-control form-control-sm border-0 shadow-none" aria-describedby="search-bar" placeholder="Cerca un messaggio" v-model="searchMsg" @keyup="searchMessage">
+                            </span>
+                            <ul class="ul-menu list-unstyled d-flex m-0 align-middle">
+                                <li @click="searchMsgCheck = !searchMsgCheck"><i class="fa-solid fa-lg fa-magnifying-glass" style="color: rgba(128, 128, 128, 0.6);"></i></li>
                                 <li><i class="fa-solid fa-lg fa-paperclip" style="color: rgba(128, 128, 128, 0.6)"></i></li>
                                 <li><i class="fa-solid fa-lg fa-ellipsis-vertical" style="color: rgba(128, 128, 128, 0.6)"></i></li>
                             </ul>
@@ -131,7 +136,7 @@
                             <div class="row flex-column m-0">
 
                                 <!-- messages -->
-                                <div class="col" v-for="(item, index) in contacts[activeContact].messages" :key="index">
+                                <div v-show="item.visibleMsg" class="col" v-for="(item, index) in contacts[activeContact].messages" :key="index">
                                     <div class="msg position-relative" :class="item.status == 'sent' ? 'msg-user float-end' : 'msg-pc float-start'">
                                         <span class="pe-none">{{item.message}}</span>
 

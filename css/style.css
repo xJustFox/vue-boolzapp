@@ -39,6 +39,10 @@ img{
    padding: 10px 0; 
 }
 
+.my-w-140{
+    width: 140px;
+}
+
 .bg-aqua{
     background-color: #8edafc;
 }
