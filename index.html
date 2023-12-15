@@ -48,13 +48,41 @@
                         </div>
                     </div>
 
-                    <!-- Search bar -->
+                    <!-- Search bar box -->
                     <div class="col-12 p-0">
                         <div class="input-group input-group-sm py-10 px-4">
-                            <span class="input-group-text border-0 pointer" id="search-bar">
+
+                            <span class="input-group-text border-0 pointer bg-light" id="search-bar">
                                 <i class="fa-solid fa-magnifying-glass" style="color: rgba(128, 128, 128, 0.6)"></i>
                             </span>
                             <input type="text" class="form-control border-0 shadow-none" aria-describedby="search-bar" placeholder="Cerca o inizia una nuova chat" v-model="search" @keyup="searchContact">
+                            <button type="button" class="border-0 bg-light" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                <i class="fa-solid fa-plus pointer" style="color: rgba(128, 128, 128, 0.6)"></i>
+                            </button>
+                    
+                    
+                            <!-- Modal (Add Contact) -->
+                            <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Aggiungi Contatto</h1>
+                                        </div>
+                                        <div class="modal-body text-center">
+                                            <div class="my-3">
+                                                <input class="form-control shadow-none" type="text" name="name" placeholder="Nome"v-model="contactName">
+                                            </div>
+                                            <div class="mb-3">
+                                                <input class="form-control shadow-none" type="tel" name="tel"placeholder="Numero di telefono" v-model="tel">
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Annulla</button>
+                                            <button type="button" class="btn btn-sm bg-green text-light" data-bs-dismiss="modal" @click="addContact">Aggiungi Contatto</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
 

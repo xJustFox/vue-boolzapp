@@ -6,6 +6,8 @@ createApp({
         return {
             newMsg: '',
             search: '',
+            contactName: '',
+            tel: '',
             texting: false,
             online: false,
             activeContact: 0,
@@ -286,5 +288,17 @@ createApp({
                 return `offline`;
             }
         },
+        addContact() {
+            let obj = {
+                name: this.contactName,
+                avatar: './img/avatar_user.jpg',
+                visible: true,
+                messages: []
+            }
+
+            this.contacts.unshift(obj);
+            this.contactName = '';
+            this.tel = '';
+        }
     },
 }).mount('#app')

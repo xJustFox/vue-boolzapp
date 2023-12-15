@@ -47,6 +47,14 @@ img{
     background-color: #EAEAEA;
 }
 
+.bg-green{
+    background-color: #009788;
+}
+
+.bg-green:hover{
+    background-color: #006c61;
+}
+
 
 /* Left container */
 .left{
