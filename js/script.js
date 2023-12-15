@@ -1,11 +1,12 @@
 const DateTime = luxon.DateTime;
-const { createApp } = Vue
+const { createApp } = Vue;
 
 createApp({
     data() {
         return {
             newMsg: '',
             search: '',
+            texting: false,
             activeContact: 0,
             contacts: [
                 {
@@ -190,16 +191,19 @@ createApp({
 
             if (obj.message.length > 0) {
                 this.contacts[this.activeContact].messages.push(obj);
-                this.newMsg = '';
+                this.newMsg= '';
                 setTimeout(() => {
-                    let obj = {
-                        date: DateTime.local().toFormat('T'),
-                        message: 'ok',
-                        status: 'received'
-                    };
-        
-                    this.contacts[this.activeContact].messages.push(obj);  
-                }, 1000);   
+                    this.texting= true;  
+                    setTimeout(() => {
+                        let obj = {
+                            date: DateTime.local().toFormat('T'),
+                            message: 'ok',
+                            status: 'received'
+                        };
+            
+                        this.contacts[this.activeContact].messages.push(obj);  
+                    }, Math.floor(Math.random() * 10000 + 1000)); 
+                },Math.floor(Math.random() * 5000 + 2000))
             }
                        
         },
@@ -235,12 +239,18 @@ createApp({
             let arr = this.contacts[this.activeContact].messages;
             let lastItem = arr[arr.length - 1];
 
+            
             if (lastItem.status == 'received') {
                 return `Ultimo acceso effetuato alle ${lastItem.date}`
             }
-            else{
-                return "offline" 
+            else if (this.texting = true) {
+                return 'Sta scrivendo...'
             }
-        }
+            else{
+                return 'offline'
+            }
+
+            
+        },
     },
 }).mount('#app')

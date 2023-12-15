@@ -123,18 +123,19 @@
                     </div>
 
                     <!-- Text bar -->
-                    <div class="col-12 bg-lightgray">
+                    <div class="col-12 bg-lightgray position-relative">
                         <div class="d-flex align-items-center py-10">
                             <span><i class="fa-regular fa-face-smile px-3 pointer" style="color: gray"></i></span>
-                            <input type="search" class="form-control border-0 shadow-none mx-3" placeholder="Scrivi un messaggio..." @keyup.enter="sendMsg" v-model="newMsg"/>
-                            <span><i class="fa-solid fa-microphone px-3 pointer" style="color: gray"></i></span>
+                            <input type="text" class="form-control border-0 shadow-none mx-3" placeholder="Scrivi un messaggio..." @keyup.enter="sendMsg" v-model="newMsg"/>
+                            <span v-if="newMsg.length > 0" @click="sendMsg()"><i class="fa-solid fa-paper-plane pointer px-3" style="color: gray"></i></span>
+                            <span v-else><i class="fa-solid fa-microphone px-3 pointer" style="color: gray"></i></span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    
+
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/luxon@3.4/build/global/luxon.min.js"></script>
     <script type="text/javascript" src="./js/script.js"></script>
