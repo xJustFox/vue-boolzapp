@@ -236,7 +236,7 @@ createApp({
                             };
                 
                             this.contacts[this.activeContact].messages.push(obj);  
-                        }, Math.floor(Math.random() * 1000)); 
+                        }, Math.floor(Math.random() * 10000 + 1000)); 
                     }, Math.floor(Math.random() * 5000 + 2000));
                 }, Math.floor(Math.random() * 2000 + 1000));
             }
@@ -297,7 +297,7 @@ createApp({
 
             if (arr.length > 0) {
                 if (lastItem.status == 'received') { 
-                    return `Ultimo acceso effetuato alle ${lastItem.date}`;
+                    return `Ultimo acceso effettuato alle ${lastItem.date}`;
                 }
                 else if (this.texting == true) {
                     return 'Sta scrivendo...';
