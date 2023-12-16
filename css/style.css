@@ -20,7 +20,7 @@ img{
     margin: 20px auto;
     height: calc(100vh - 40px);
     width: 80%;
-    background-color: white;
+    background-color: #fff;
 }
 
 .my-d-flex{
@@ -124,4 +124,3 @@ img{
     background-color: #D5F9BB;
     margin-right: 50px;
 }
-

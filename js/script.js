@@ -16,7 +16,7 @@ createApp({
             contacts: [
                 {
                     name: 'Michele',
-                    avatar: './img/avatar_1.jpg',
+                    avatar: '../img/avatar_1.jpg',
                     visible: true,
                     messages: [
                         {
@@ -41,7 +41,7 @@ createApp({
                 },
                 {
                     name: 'Gioia',
-                    avatar: './img/avatar_2.jpg',
+                    avatar: '../img/avatar_2.jpg',
                     visible: true,
                     messages: [
                         {
@@ -66,7 +66,7 @@ createApp({
                 },
                 {
                     name: 'Samuele',
-                    avatar: './img/avatar_3.jpg',
+                    avatar: '../img/avatar_3.jpg',
                     visible: true,
                     messages: [
                         {
@@ -91,7 +91,7 @@ createApp({
                 },
                 {
                     name: 'Alessandro B.',
-                    avatar: './img/avatar_4.jpg',
+                    avatar: '../img/avatar_4.jpg',
                     visible: true,
                     messages: [
                         {
@@ -110,7 +110,7 @@ createApp({
                 },
                 {
                     name: 'Alessandro L.',
-                    avatar: './img/avatar_5.jpg',
+                    avatar: '../img/avatar_5.jpg',
                     visible: true,
                     messages: [
                         {
@@ -129,7 +129,7 @@ createApp({
                 },
                 {
                     name: 'Claudia',
-                    avatar: './img/avatar_6.jpg',
+                    avatar: '../img/avatar_6.jpg',
                     visible: true,
                     messages: [
                         {
@@ -154,7 +154,7 @@ createApp({
                 },
                 {
                     name: 'Federico',
-                    avatar: './img/avatar_7.jpg',
+                    avatar: '../img/avatar_7.jpg',
                     visible: true,
                     messages: [
                         {
@@ -179,7 +179,7 @@ createApp({
                 },
                 {
                     name: 'Davide',
-                    avatar: './img/avatar_8.jpg',
+                    avatar: '../img/avatar_8.jpg',
                     visible: true,
                     messages: [
                         {
@@ -321,7 +321,7 @@ createApp({
         addContact() {
             const obj = {
                 name: this.contactName,
-                avatar: './img/avatar_user.jpg',
+                avatar: '../img/avatar_user.jpg',
                 visible: true,
                 messages: []
             }
