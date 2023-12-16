@@ -223,7 +223,7 @@ createApp({
                 setTimeout(() => {
                     this.online= true;
                     setTimeout(() => {
-                        this.texting= true;  
+                        this.texting = true;  
                         setTimeout(() => {
                             const arrMsg = ['Ciao','Ok','Scusa, non posso rispondere.', 'Devo aver perso il tuo numero, chi sei?', 'Ciao Franco, come stai?', 'Credo tu abbia sbagliato numero'];
                             const randomNum = Math.floor(Math.random() * arrMsg.length + 0);
@@ -236,8 +236,10 @@ createApp({
                             };
                 
                             this.contacts[this.activeContact].messages.push(obj);  
+                            this.texting = false;
+                            this.online= false;
                         }, Math.floor(Math.random() * 10000 + 1000)); 
-                    }, Math.floor(Math.random() * 5000 + 2000));
+                    }, Math.floor(Math.random() * 5000 + 1000));
                 }, Math.floor(Math.random() * 2000 + 1000));
             }
                        
@@ -289,7 +291,7 @@ createApp({
         lastActiveDate(){
             const arr = this.contacts[this.activeContact].messages;
             const lastItem = arr[arr.length - 1];
-            let checkArr = [];
+            const checkArr = [];
 
             arr.forEach(element => {
                 checkArr.push(element.status)
